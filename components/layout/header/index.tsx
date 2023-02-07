@@ -5,7 +5,7 @@ import { Box, Typography } from '../../../elements';
 const Header: FC = () => (
   <Box as="header">
     <Typography as="h1" m="L">
-      Logo
+      FINapp
     </Typography>
   </Box>
 );

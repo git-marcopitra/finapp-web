@@ -1,24 +1,28 @@
-import Link from 'next/link';
-import { FC } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useEffect } from 'react';
 
-import { Layout, Logo } from '../components';
-import { RoutePaths, RoutesEnum } from '../constants/routes';
-import { Box, Typography } from '../elements';
+import { Layout } from '../components';
+import Balances from '../components/balances';
+import Operations from '../components/operations';
+import { Box } from '../elements';
+import useUser from '../hooks/use-user';
 
-const Home: FC = () => (
-  <Layout pageTitle="Home">
-    <Box
-      bg="background"
-      p="XXXL"
-      borderRadius="S"
-      borderTopRightRadius="0"
-      borderTopLeftRadius="0"
-    >
-      <Logo />
-      <Typography as="h1">Home</Typography>
-      <Link href={RoutePaths[RoutesEnum.Home]}>Goto To Other Page &rarr; </Link>
-    </Box>
-  </Layout>
-);
+const Home: FC = () => {
+  const { isLogged } = useUser();
+  const { push } = useRouter();
+
+  useEffect(() => {
+    if (!isLogged) push('/login');
+  }, [isLogged]);
+
+  return (
+    <Layout pageTitle="Home">
+      <Box display="grid" gridTemplateColumns="1fr 1fr">
+        <Balances />
+        <Operations />
+      </Box>
+    </Layout>
+  );
+};
 
 export default Home;
