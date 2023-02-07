@@ -6,8 +6,8 @@ import useUser from '../../hooks/use-user';
 const Balances: FC = () => {
   const { user } = useUser();
 
-  const [addIncomeOpen, setAddIncomeOpen] = useState(false);
-  const [addCostOpen, setAddCostOpen] = useState(false);
+  const [, setAddIncomeOpen] = useState(false);
+  const [, setAddCostOpen] = useState(false);
 
   const incomes =
     user?.incomes?.reduce((acc, { amount }) => acc + amount, 0) ?? 0;
